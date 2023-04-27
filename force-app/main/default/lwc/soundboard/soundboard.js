@@ -8,15 +8,15 @@ import Name from "@salesforce/schema/User.Name"
 import ACCOUNT from "@salesforce/schema/User.Account.Soundboard__c";
 import SOUNDBOARD_ID from "@salesforce/schema/User.Account.Soundboard__r.Id";
 
-// import IMG_URL from "@salesforce/schema/Sound__c.Audio_IMG__c";
-// import AUDIO_URL from "@salesforce/schema/Sound__c.Audio_URL__c";
+import IMG_URL from "@salesforce/schema/Sound__c.Audio_IMG__c";
+import AUDIO_URL from "@salesforce/schema/Sound__c.Audio_URL__c";
 
-import IMG_URL from "@salesforce/schema/Board_Audio__c.Sound__r.Audio_IMG__c"
-import AUDIO_URL from "@salesforce/schema/Board_Audio__c.Sound__r.Audio_URL__c"
-import AUDIO_NAME from "@salesforce/schema/Board_Audio__c.Name"
+// import IMG_URL from "@salesforce/schema/Board_Audio__c.Sound__r.Audio_IMG__c"
+// import AUDIO_URL from "@salesforce/schema/Board_Audio__c.Sound__r.Audio_URL__c"
+// import AUDIO_NAME from "@salesforce/schema/Board_Audio__c.Name"
 
 const USER_FIELDS = [Name, Alias, AccountId, ACCOUNT, SOUNDBOARD_ID];
-const RELATED_SOUNDBOARD_FIELDS = [IMG_URL, AUDIO_URL, AUDIO_NAME];
+// const RELATED_SOUNDBOARD_FIELDS = [IMG_URL, AUDIO_URL, AUDIO_NAME];
 
 export default class Soundboard extends LightningElement {
 
@@ -57,16 +57,17 @@ export default class Soundboard extends LightningElement {
 
     setSounds(data) {
         const totalSounds = data.length;
+        // console.log(data);
         const sounds = [...data];
-        console.log(data)
-
-        // for (let i = 0; i < totalSounds; i++) {
-        //     const { Sound__r: sound } = sounds[i].fields;
-        //     const audio = getFieldValue(sound, AUDIO_URL);
-        //     const img = getFieldValue(sound, IMG_URL);
-        //     console.log(audio);
-        //     console.log(img);
-        // }
+        // console.log(IMG_URL)
+        for (let i = 0; i < totalSounds; i++) {
+            const { Sound__r: sound } = sounds[i].fields;
+            // console.log(sound)
+            const audio = getFieldValue(sound.value, AUDIO_URL);
+            const img = getFieldValue(sound.value, IMG_URL);
+            console.log(audio);
+            console.log(img);
+        }
     }
 
     // connectedCallback() {
