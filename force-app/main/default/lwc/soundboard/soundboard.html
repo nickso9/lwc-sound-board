@@ -1,5 +1,25 @@
 <template>
     <lightning-card title="Soundboard">
-        <div class="slds-p-around_medium">'sdfkhkjsdhf</div>
+        <div class="slds-p-around_medium">
+            <div>Search Bar with new button</div>
+        </div>
+        <div class="slds-p-around_medium">
+            <template lwc:if={sounds.length}>
+                <div class="grid-container">
+                    <template for:each={sounds} for:item="sound">
+                        <div key={sound.id} class="card" id={sound.id} onclick={audioHandler}>
+                            <audio src={sound.audio} type="audio/mp3"></audio>
+                            <div><img src={sound.img} /></div>
+                            <div><p>{sound.name}</p>
+                                <!-- <p>{sound.audio}</p> -->
+                            </div>  
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template lwc:else>
+                <p>No sounds loaded</p>
+            </template>
+        </div>
     </lightning-card>
 </template>
