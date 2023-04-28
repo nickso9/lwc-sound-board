@@ -3,16 +3,25 @@
         <div class="slds-p-around_medium">
             <div>Search Bar with new button</div>
         </div>
-        <div class="slds-p-around_medium">
+        <div class="slds-p-around_medium actions-container slds-grid slds-gutters slds-align-top">
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-input type="search" onchange={handleInputChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-align-bottom">
+                <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
+            </div>
+        </div>
+        <div class="slds-p-around_medium soundboard-container">
             <template lwc:if={sounds.length}>
                 <div class="grid-container">
                     <template for:each={sounds} for:item="sound">
                         <div key={sound.id} class="card" id={sound.id} onclick={audioHandler}>
                             <audio src={sound.audio} type="audio/mp3"></audio>
                             <div><img src={sound.img} /></div>
-                            <div><p>{sound.name}</p>
+                            <div>
+                                <p>{sound.name}</p>
                                 <!-- <p>{sound.audio}</p> -->
-                            </div>  
+                            </div>
                         </div>
                     </template>
                 </div>

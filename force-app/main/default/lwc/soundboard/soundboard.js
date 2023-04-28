@@ -22,6 +22,7 @@ export default class Soundboard extends LightningElement {
     soundboardId;
     @track
     sounds = [];
+    searchKey;
 
     @wire(getRecord, { recordId: '$recordId', fields: USER_FIELDS })
     accountHandler({ data, error }) {
@@ -68,11 +69,18 @@ export default class Soundboard extends LightningElement {
     }
 
     audioHandler(event) {
-        console.log('click')
-        const id = "#" + event.target.id;
-
+        
+        const id = "#" + event.currentTarget.id;
         const audioContainer = this.template.querySelector(id);
         const audio = audioContainer.firstElementChild
         audio.play();
+    }
+
+    handleInputChange(event) {
+        this.searchKey = event.target.value;
+    }
+
+    handleSearch(event) {
+        console.log(this.searchKey);
     }
 }
