@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import Id from '@salesforce/user/Id'
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
@@ -22,10 +22,12 @@ export default class Soundboard extends LightningElement {
 
     recordId = '005Do0000023NbZIAU'
     soundboardId;
-    // @track
     sounds = [];
     searchKey;
+    showModal = false;
     isMadeSearch = false;
+    isAddSound = false;
+
     searchedSounds = [];
 
     @wire(getRecord, { recordId: '$recordId', fields: USER_FIELDS })
@@ -72,36 +74,43 @@ export default class Soundboard extends LightningElement {
         // console.log(this.sounds)
     }
 
-    audioHandler(event) {
-
-        const id = "#" + event.currentTarget.id;
-        const audioContainer = this.template.querySelector(id);
-        const audio = audioContainer.firstElementChild
-        audio.play();
-    }
-
     handleInputChange(event) {
         this.searchKey = event.target.value;
     }
 
-    handleSearchClose() {
-        this.isMadeSearch = false;
+    closeHandler() {
+        this.searchKey = "";
+        this.template.querySelector("lightning-input").value = "";
+        this.showModal = false;
+        if (this.isMadeSearch) {
+            this.isMadeSearch = false;
+        }
+        if (this.isAddSound) this.isAddSound = false;
     }
 
 
     async handleSearch() {
         this.isMadeSearch = true;
-        const returnedSounds = await getSoundList({ searchKey: this.searchKey })
+        this.showModal = true;
+        if (!this.searchKey) {
+            return this.searchedSounds = [];
+        }
+        const returnedSounds = await getSoundList({ searchKey: this.searchKey });
         try {
             if (returnedSounds.length) {
-                this.searchedSounds = returnedSounds;
-                console.log(this.searchedSounds)
+                console.log('query')
+                this.searchedSounds = returnedSounds.map(item => {
+                    return {
+                        name: item.Name,
+                        id: item.Id,
+                        img: item.Audio_IMG__c,
+                        audio: item.Audio_Src__c
+                    }
+                });
+                console.log('returned sounds ' + JSON.stringify(returnedSounds))
             }
         } catch (error) {
             console.log(error);
         }
-
-        
-        console.log(this.searchKey);
     }
 }

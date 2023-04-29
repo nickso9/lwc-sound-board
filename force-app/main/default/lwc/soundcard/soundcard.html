@@ -1,0 +1,18 @@
+<template>
+    <template lwc:if={sounds.length}>
+        <div class="grid-container">
+            <template for:each={sounds} for:item="sound">
+                <div key={sound.id} class="card" id={sound.id} onclick={audioHandler}>
+                    <audio src={sound.audio} type="audio/mp3"></audio>
+                    <div><img src={sound.img} /></div>
+                    <div>
+                        <p>{sound.name}</p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template lwc:else>
+        <p>No sounds loaded</p>
+    </template>
+</template>
