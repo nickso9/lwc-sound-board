@@ -13,6 +13,8 @@ import AUDIO_URL from "@salesforce/schema/Sound__c.Audio_Src__c";
 import SOUND_NAME from "@salesforce/schema/Sound__c.Name";
 import SOUND_ID from "@salesforce/schema/Board_Audio__c.Id";
 
+import getSoundList from "@salesforce/apex/SoundController.getSoundList";
+
 const USER_FIELDS = [Name, Alias, AccountId, ACCOUNT, SOUNDBOARD_ID];
 
 
@@ -20,9 +22,11 @@ export default class Soundboard extends LightningElement {
 
     recordId = '005Do0000023NbZIAU'
     soundboardId;
-    @track
+    // @track
     sounds = [];
     searchKey;
+    isMadeSearch = false;
+    searchedSounds = [];
 
     @wire(getRecord, { recordId: '$recordId', fields: USER_FIELDS })
     accountHandler({ data, error }) {
@@ -60,7 +64,7 @@ export default class Soundboard extends LightningElement {
             const img = getFieldValue(sound.value, IMG_URL);
             const name = getFieldValue(sound.value, SOUND_NAME);
             const id = getFieldValue(sounds[i], SOUND_ID)
-            tempSound.push({id, name, img, audio});
+            tempSound.push({ id, name, img, audio });
         }
         // console.log(JSON.parse(JSON.stringify(tempSound)));
         this.sounds = tempSound;
@@ -69,7 +73,7 @@ export default class Soundboard extends LightningElement {
     }
 
     audioHandler(event) {
-        
+
         const id = "#" + event.currentTarget.id;
         const audioContainer = this.template.querySelector(id);
         const audio = audioContainer.firstElementChild
@@ -80,7 +84,24 @@ export default class Soundboard extends LightningElement {
         this.searchKey = event.target.value;
     }
 
-    handleSearch(event) {
+    handleSearchClose() {
+        this.isMadeSearch = false;
+    }
+
+
+    async handleSearch() {
+        this.isMadeSearch = true;
+        const returnedSounds = await getSoundList({ searchKey: this.searchKey })
+        try {
+            if (returnedSounds.length) {
+                this.searchedSounds = returnedSounds;
+                console.log(this.searchedSounds)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        
         console.log(this.searchKey);
     }
 }

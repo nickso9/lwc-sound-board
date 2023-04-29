@@ -3,6 +3,12 @@
     margin: auto;
 }
 
+.search-container {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 8px 9px 26px 0 rgba(46,61,73, 0.5);
+}
 
 .grid-container {
     display: grid;

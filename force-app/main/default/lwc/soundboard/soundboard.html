@@ -11,6 +11,34 @@
                 <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
             </div>
         </div>
+        <template if:true={isMadeSearch}>
+            <div class="slds-p-around_medium soundboard-container">
+                <div class="search-container">
+                    <div class="slds-text-align_right">
+                        <lightning-icon onclick={handleSearchClose} size="xx-small" icon-name="utility:close"
+                            alternative-text="close" title="Close">
+                        </lightning-icon>
+                    </div>
+                    <div class="slds-m-top_small">
+                        <template lwc:if={searchedSounds.length}>
+                            <template for:each={searchedSounds} for:item="sound">     
+                                <article key={sound.Id} class="slds-card">
+                                    <div class="slds-card__header slds-grid">
+                                        <div><img src={sound.Audio_IMG__c} /></div>
+                                    </div>
+                                    <div class="slds-card__body slds-card__body_inner">{sound.Name}</div>
+                                  </article>
+                            </template>
+                        </template>
+                        <template lwc:else>
+                            <div class="slds-text-align_center">
+                                <p>Results not found</p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
         <div class="slds-p-around_medium soundboard-container">
             <template lwc:if={sounds.length}>
                 <div class="grid-container">
