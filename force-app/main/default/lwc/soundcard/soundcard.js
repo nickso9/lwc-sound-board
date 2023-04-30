@@ -5,11 +5,22 @@ export default class Soundcard extends LightningElement {
 
     audioHandler(event) {
     
-        const audio = event.currentTarget.closest('audio');
-        console.log(event.currentTarget.firstChild.children[1])
-        // const id = "#" + event.currentTarget.id;
-        // const audioContainer = this.template.querySelector(id);
-        // const audio = audioContainer.firstElementChild
-        // audio.play();
+        const currentEle = event.currentTarget
+        const action = currentEle.getAttribute("data-action")
+
+        if (action === "play") {
+            const audio = currentEle.firstElementChild;
+            audio.play()
+        }
+
+        if (action === "delete") {
+            console.log("delete now")
+            const parent = currentEle.parentElement;
+            console.log(parent.id);
+            console.log(parent)
+        }
+
     }
+    
+
 }

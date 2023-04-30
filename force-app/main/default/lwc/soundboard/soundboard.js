@@ -70,9 +70,10 @@ export default class Soundboard extends LightningElement {
         }
         // console.log(JSON.parse(JSON.stringify(tempSound)));
         this.sounds = tempSound;
-        // console.log(JSON.parse(JSON.stringify(this.sounds)));
+        console.log(JSON.parse(JSON.stringify(this.sounds)));
         // console.log(this.sounds)
     }
+
 
     handleInputChange(event) {
         this.searchKey = event.target.value;

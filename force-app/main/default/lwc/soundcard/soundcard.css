@@ -29,10 +29,10 @@
     color: #A95AAA;
     
     background-color: rgba(42,43,45,255);
-    border-top: 1px solid #CCCCCC;
+    border-top: 1px solid black;
     border-right: 3px solid #A95AAA;
     border-bottom: 3px solid #A95AAA;
-    border-left: 1px solid #CCCCCC;
+    border-left: 1px solid black;
     border-radius: 4px;
 }
 

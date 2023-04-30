@@ -2,22 +2,26 @@
     <template lwc:if={sounds.length}>
         <div class="grid-container">
             <template for:each={sounds} for:item="sound">
-                <!-- <div key={sound.id} class="card" id={sound.id} onclick={audioHandler}> -->
-                <div key={sound.id} class="card" id={sound.id}>
-                    <audio src={sound.audio} type="audio/mp3"></audio>
+                <!-- <div key={sound.id} class="card" onclick={audioHandler} id={sound.id}> -->
+                    <div key={sound.id} class="card">
                     <div class="card-name slds-p-left_xx-small">
                         <strong>{sound.name}</strong>
                     </div>
+
                     <div class="card-img">
                         <img src={sound.img} />
                     </div>
-                    <div class="slds-grid slds-grid slds-grid_align-spread slds-size_1-of-1 slds-p-horizontal_xx-small slds-grid_vertical-align-center">
-                        <div>
-                            <lightning-icon class="pointer delete-icon" size="x-small" icon-name="utility:delete" alternative-text="delete" title="delete" onclick={handleAddSound}></lightning-icon>
+
+                    <div id={sound.id} class="slds-grid slds-grid slds-grid_align-spread slds-size_1-of-1 slds-p-horizontal_xx-small slds-grid_vertical-align-center">
+                        <div data-action="delete" onclick={audioHandler}>
+                            <lightning-icon class="pointer delete-icon" size="x-small" icon-name="utility:delete"
+                                alternative-text="delete" title="delete" onclick={handleAddSound}></lightning-icon>
                         </div>
-                        <div onclick={audioHandler}>
+                        <!-- <div onclick={audioHandler} id={sound.id} >  -->
+                        <div data-action="play" onclick={audioHandler}>
                             <audio src={sound.audio} type="audio/mp3"></audio>
-                            <lightning-icon class="pointer play-icon" size="small" icon-name="utility:play" alternative-text="play" title="play" onclick={handleAddSound}></lightning-icon>
+                            <lightning-icon class="pointer play-icon" size="small" icon-name="utility:play"
+                                alternative-text="play" title="play" onclick={handleAddSound}></lightning-icon>
                         </div>
                     </div>
                 </div>
