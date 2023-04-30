@@ -4,7 +4,4 @@ public with sharing class SoundController {
         String searchString = '%' + searchKey + '%';
         return [SELECT Id, Name, Audio_Src__c, Audio_IMG__c from Sound__c  Where Name Like :searchString Limit 5];
     }
-    public static void removedSound(String id) {
-        
-    }
 }
