@@ -78,12 +78,12 @@ export default class Soundboard extends LightningElement {
         this.searchKey = event.target.value;
     }
 
-    closeHandler() {
-        this.searchKey = "";
-        this.template.querySelector("lightning-input").value = "";
+    closeHandler() {  
         this.showModal = false;
         if (this.isMadeSearch) {
             this.isMadeSearch = false;
+            this.searchKey = "";
+            this.template.querySelector("input").value = "";
         }
         if (this.isAddSound) this.isAddSound = false;
     }
@@ -112,5 +112,10 @@ export default class Soundboard extends LightningElement {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    handleAddSound() {
+        this.isAddSound = true;
+        this.showModal = true;
     }
 }

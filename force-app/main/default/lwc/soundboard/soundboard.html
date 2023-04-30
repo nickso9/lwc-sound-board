@@ -1,21 +1,41 @@
 <template>
     <lightning-card title="Soundboard">
-        <div class="slds-p-around_medium">
-            <div>Search Bar with new button</div>
-        </div>
-        <div class="slds-p-around_medium actions-container slds-grid slds-gutters slds-align-top">
-            <div class="slds-col slds-size_1-of-3">
-                <lightning-input type="search" onchange={handleInputChange}></lightning-input>
-            </div>
-            <div class="slds-col slds-size_1-of-3 slds-align-bottom">
+        <lightning-layout class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center soundboard-container">
+            <lightning-layout-item class="slds-grid slds-grid_vertical-align-center ">
+                <lightning-icon class="pointer" size="small" icon-name="action:new" alternative-text="new" title="new" onclick={handleAddSound}></lightning-icon>
+                <p class="slds-m-left_small" onclick={handleAddSound}><a href="#"><strong>Add Sound</strong></a></p>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
+                <!-- <lightning-input type="search" onchange={handleInputChange}></lightning-input> -->
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                        <lightning-icon size="x-small"
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            icon-name="utility:search"></lightning-icon>
+                        <input type="Search" id="search-input" onchange={handleInputChange} class="slds-input" />
+                    </div>
+                </div>
                 <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <!-- <div class="slds-p-around_medium actions-container slds-grid slds-gutters slds-align-top">
+            <div>
+
             </div>
-        </div>
+            <div class="slds-col slds-size_1-of-3">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input type="search" onchange={handleInputChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3 slds-align-bottom">
+                    <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
+                </div>
+            </div>  
+        </div> -->
         <template if:true={isMadeSearch}>
             <c-search searched-sounds={searchedSounds} onclose={closeHandler}></c-search>
         </template>
         <template if:true={isAddSound}>
-            <div></div>
+            <c-create-sound onclose={closeHandler}></c-create-sound>
         </template>
         <div class="slds-p-around_medium soundboard-container">
             <c-soundcard sounds={sounds}></c-soundcard>
