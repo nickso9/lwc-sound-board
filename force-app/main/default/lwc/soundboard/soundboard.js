@@ -1,7 +1,10 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import Id from '@salesforce/user/Id'
-import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import { getRecord, getFieldValue, createRecord } from 'lightning/uiRecordApi';
 import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
+// import { RefreshEvent } from 'lightning/refresh';
+import { refreshApex } from '@salesforce/apex';
+
 import AccountId from "@salesforce/schema/User.AccountId"
 import Alias from "@salesforce/schema/User.Alias"
 import Name from "@salesforce/schema/User.Name"
@@ -34,6 +37,7 @@ export default class Soundboard extends LightningElement {
     accountHandler({ data, error }) {
         if (data) {
             // console.log(data);
+            console.log('wire get record')
             this.soundboardId = getFieldValue(data, SOUNDBOARD_ID)
             // this.soundboardId = data.fields.Account.value.fields.Soundboard__c.value;
         } else {
@@ -41,14 +45,20 @@ export default class Soundboard extends LightningElement {
         }
     }
 
+    _wiredRelatedData;
     @wire(getRelatedListRecords, {
         parentRecordId: '$soundboardId',
         relatedListId: 'Board_Audios__r',
         fields: ['Board_Audio__c.Id', 'Board_Audio__c.Sound__r.Name', 'Board_Audio__c.Sound__r.Audio_IMG__c', 'Board_Audio__c.Sound__r.Audio_Src__c'],
         sortBy: ['Board_Audio__c.Sound__r.Name']
     })
-    relatedSoundHandler({ data, error }) {
+    relatedSoundHandler(relatedSounds) {
+        this._wiredRelatedData = relatedSounds
+        const { data, error } = relatedSounds;
         if (data) {
+            // console.log(JSON.parse(JSON.stringify(data)));
+            // this.sounds = data;
+            console.log('wire get related records')
             this.setSounds(data.records);
         } else {
             console.log(error)
@@ -56,6 +66,7 @@ export default class Soundboard extends LightningElement {
     }
 
     setSounds(data) {
+        console.log('set sounds')
         const totalSounds = data.length;
         // console.log(data);
         const sounds = [...data];
@@ -79,7 +90,11 @@ export default class Soundboard extends LightningElement {
         this.searchKey = event.target.value;
     }
 
-    closeHandler() {  
+    closeHandler() {
+        console.log('close modal')
+        
+        
+        // eval("$A.get('e.force:refreshView').fire();");
         this.showModal = false;
         if (this.isMadeSearch) {
             this.isMadeSearch = false;
@@ -87,6 +102,59 @@ export default class Soundboard extends LightningElement {
             this.template.querySelector("input").value = "";
         }
         if (this.isAddSound) this.isAddSound = false;
+
+        setTimeout(()=> {
+            console.log('refreshing')
+            eval("$A.get('e.force:refreshView').fire();");
+            // eval("$A.get('e.force:refreshView').fire();");
+            // return refreshApex(this._wiredRelatedData)
+        },1000);
+        setTimeout(()=> {
+            console.log('refreshing')
+            eval("$A.get('e.force:refreshView').fire();");
+            // eval("$A.get('e.force:refreshView').fire();");
+            // return refreshApex(this._wiredRelatedData)
+        },2000);
+        // this.dispatchEvent(new RefreshEvent());
+    }
+
+    addsoundHandler(event) {
+        const boardAudio = {
+            apiName: event.detail.apiName,
+            fields: { ...event.detail.fields, Soundboard__c: this.soundboardId }
+        }
+        // console.log(boardAudio)
+        createRecord(boardAudio)
+            .then((result) => {
+                // console.log(result);
+                // console.log('refreshing')
+                // // const tempSound = this.sounds;
+                // const audio = getFieldValue(result, AUDIO_URL);
+                // const img = getFieldValue(result, IMG_URL);
+                // const name = getFieldValue(result, SOUND_NAME);
+                // const id = getFieldValue(result, SOUND_ID)
+                // const test = { id, name, img, audio }
+                // // tempSound.push({ id, name, img, audio });
+                // console.log(test)
+                // console.log('asdasd')
+                // this.sounds = tempSound;
+                // console.log(this.provisionedValue)
+                // refreshApex(this.provisionedValue)
+                // return refreshApex(this.provisionedValue)
+                // refreshApex(this.provisionedValueOne)
+                // setTimeout(() => {
+                //     window.location.reload();
+                //     // this.closeHandler()
+                // }, 1000)
+                return refreshApex(this._wiredRelatedData)
+            })
+            .then((e) => {
+                console.log('refreshed in addosundhandler')
+            //     this.closeHandler()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
 
@@ -108,7 +176,7 @@ export default class Soundboard extends LightningElement {
                         audio: item.Audio_Src__c
                     }
                 });
-                console.log('returned sounds ' + JSON.stringify(returnedSounds))
+                // console.log('returned sounds ' + JSON.stringify(returnedSounds))
             }
         } catch (error) {
             console.log(error);

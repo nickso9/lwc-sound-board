@@ -33,11 +33,15 @@
             <template lwc:if={searchedSounds.length}>
                 <template for:each={searchedSounds} for:item="sound">
                     <article key={sound.id} class="slds-card">
+                        <c-searchcard sound={sound}></c-searchcard>
+                    </article>
+                   
+                    <!-- <article key={sound.id} class="slds-card">
                         <div class="slds-card__header slds-grid">
                             <div><img src={sound.img} /></div>
                         </div>
                         <div class="slds-card__body slds-card__body_inner">{sound.name}</div>
-                    </article>
+                    </article> -->
                 </template>
             </template>
             <template lwc:else>

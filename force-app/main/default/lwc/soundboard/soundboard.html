@@ -32,7 +32,7 @@
             </div>  
         </div> -->
         <template if:true={isMadeSearch}>
-            <c-search searched-sounds={searchedSounds} onclose={closeHandler}></c-search>
+            <c-search searched-sounds={searchedSounds} onclose={closeHandler} onaddsound={addsoundHandler}></c-search>
         </template>
         <template if:true={isAddSound}>
             <c-create-sound onclose={closeHandler}></c-create-sound>
