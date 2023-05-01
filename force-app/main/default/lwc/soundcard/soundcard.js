@@ -23,6 +23,7 @@ export default class Soundcard extends LightningElement {
             try {
                 const deletedRecord = await deleteRecord(soundId)
                 console.log(deletedRecord)
+                this.dispatchEvent(new CustomEvent('refreshcard'));
             } catch (error) {
                 console.log(error);
             }

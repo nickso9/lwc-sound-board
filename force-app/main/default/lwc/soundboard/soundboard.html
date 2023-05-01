@@ -32,13 +32,13 @@
             </div>  
         </div> -->
         <template if:true={isMadeSearch}>
-            <c-search searched-sounds={searchedSounds} onclose={closeHandler} onaddsound={addsoundHandler}></c-search>
+            <c-search searched-sounds={searchedSounds} onclose={closeHandler} onaddsound={addSoundHandler}></c-search>
         </template>
         <template if:true={isAddSound}>
             <c-create-sound onclose={closeHandler}></c-create-sound>
         </template>
         <div class="slds-p-around_medium soundboard-container">
-            <c-soundcard sounds={sounds}></c-soundcard>
+            <c-soundcard sounds={sounds} onrefreshcard={refreshCard}></c-soundcard>
         </div>
     </lightning-card>
 </template>

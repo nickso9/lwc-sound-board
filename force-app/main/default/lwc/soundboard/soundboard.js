@@ -1,7 +1,6 @@
 import { LightningElement, wire, track } from 'lwc';
 import Id from '@salesforce/user/Id'
 import { getRecord, getFieldValue, createRecord } from 'lightning/uiRecordApi';
-import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
 // import { RefreshEvent } from 'lightning/refresh';
 import { refreshApex } from '@salesforce/apex';
 
@@ -11,12 +10,13 @@ import Name from "@salesforce/schema/User.Name"
 import ACCOUNT from "@salesforce/schema/User.Account.Soundboard__c";
 import SOUNDBOARD_ID from "@salesforce/schema/User.Account.Soundboard__r.Id";
 
-import IMG_URL from "@salesforce/schema/Sound__c.Audio_IMG__c";
-import AUDIO_URL from "@salesforce/schema/Sound__c.Audio_Src__c";
-import SOUND_NAME from "@salesforce/schema/Sound__c.Name";
-import SOUND_ID from "@salesforce/schema/Board_Audio__c.Id";
+// import IMG_URL from "@salesforce/schema/Sound__c.Audio_IMG__c";
+// import AUDIO_URL from "@salesforce/schema/Sound__c.Audio_Src__c";
+// import SOUND_NAME from "@salesforce/schema/Sound__c.Name";
+// import SOUND_ID from "@salesforce/schema/Board_Audio__c.Id";
 
 import getSoundList from "@salesforce/apex/SoundController.getSoundList";
+import getBoardAudio from "@salesforce/apex/BoardAudioController.getBoardAudio";
 
 const USER_FIELDS = [Name, Alias, AccountId, ACCOUNT, SOUNDBOARD_ID];
 
@@ -46,43 +46,37 @@ export default class Soundboard extends LightningElement {
     }
 
     _wiredRelatedData;
-    @wire(getRelatedListRecords, {
-        parentRecordId: '$soundboardId',
-        relatedListId: 'Board_Audios__r',
-        fields: ['Board_Audio__c.Id', 'Board_Audio__c.Sound__r.Name', 'Board_Audio__c.Sound__r.Audio_IMG__c', 'Board_Audio__c.Sound__r.Audio_Src__c'],
-        sortBy: ['Board_Audio__c.Sound__r.Name']
-    })
+    @wire(getBoardAudio, {soundboardId: '$soundboardId'})
     relatedSoundHandler(relatedSounds) {
         this._wiredRelatedData = relatedSounds
         const { data, error } = relatedSounds;
         if (data) {
-            // console.log(JSON.parse(JSON.stringify(data)));
-            // this.sounds = data;
-            console.log('wire get related records')
-            this.setSounds(data.records);
+            this.setSounds(data);
         } else {
             console.log(error)
         }
     }
 
+
     setSounds(data) {
-        console.log('set sounds')
+        console.log('Setting sounds into board')
         const totalSounds = data.length;
-        // console.log(data);
-        const sounds = [...data];
         const tempSound = [];
         for (let i = 0; i < totalSounds; i++) {
-            const { Sound__r: sound } = sounds[i].fields;
-            const audio = getFieldValue(sound.value, AUDIO_URL);
-            const img = getFieldValue(sound.value, IMG_URL);
-            const name = getFieldValue(sound.value, SOUND_NAME);
-            const id = getFieldValue(sounds[i], SOUND_ID)
+            const sound = data[i]
+            // const { Sound__r: sound } = sounds[i].fields;
+            // const audio = getFieldValue(sound.value, AUDIO_URL);
+            // const img = getFieldValue(sound.value, IMG_URL);
+            // const name = getFieldValue(sound.value, SOUND_NAME);
+            // const id = getFieldValue(sounds[i], SOUND_ID)
+            const audio = sound.Sound__r.Audio_Src__c;
+            const img = sound.Sound__r.Audio_IMG__c;
+            const name = sound.Sound__r.Name;
+            const id = sound.Id;
             tempSound.push({ id, name, img, audio });
         }
-        // console.log(JSON.parse(JSON.stringify(tempSound)));
         this.sounds = tempSound;
         console.log(JSON.parse(JSON.stringify(this.sounds)));
-        // console.log(this.sounds)
     }
 
 
@@ -90,11 +84,13 @@ export default class Soundboard extends LightningElement {
         this.searchKey = event.target.value;
     }
 
+    refreshCard() {
+        console.log('refresh card')
+        return refreshApex(this._wiredRelatedData)
+    }
+
     closeHandler() {
         console.log('close modal')
-        
-        
-        // eval("$A.get('e.force:refreshView').fire();");
         this.showModal = false;
         if (this.isMadeSearch) {
             this.isMadeSearch = false;
@@ -103,22 +99,9 @@ export default class Soundboard extends LightningElement {
         }
         if (this.isAddSound) this.isAddSound = false;
 
-        setTimeout(()=> {
-            console.log('refreshing')
-            eval("$A.get('e.force:refreshView').fire();");
-            // eval("$A.get('e.force:refreshView').fire();");
-            // return refreshApex(this._wiredRelatedData)
-        },1000);
-        setTimeout(()=> {
-            console.log('refreshing')
-            eval("$A.get('e.force:refreshView').fire();");
-            // eval("$A.get('e.force:refreshView').fire();");
-            // return refreshApex(this._wiredRelatedData)
-        },2000);
-        // this.dispatchEvent(new RefreshEvent());
     }
 
-    addsoundHandler(event) {
+    addSoundHandler(event) {
         const boardAudio = {
             apiName: event.detail.apiName,
             fields: { ...event.detail.fields, Soundboard__c: this.soundboardId }
@@ -126,27 +109,7 @@ export default class Soundboard extends LightningElement {
         // console.log(boardAudio)
         createRecord(boardAudio)
             .then((result) => {
-                // console.log(result);
-                // console.log('refreshing')
-                // // const tempSound = this.sounds;
-                // const audio = getFieldValue(result, AUDIO_URL);
-                // const img = getFieldValue(result, IMG_URL);
-                // const name = getFieldValue(result, SOUND_NAME);
-                // const id = getFieldValue(result, SOUND_ID)
-                // const test = { id, name, img, audio }
-                // // tempSound.push({ id, name, img, audio });
-                // console.log(test)
-                // console.log('asdasd')
-                // this.sounds = tempSound;
-                // console.log(this.provisionedValue)
-                // refreshApex(this.provisionedValue)
-                // return refreshApex(this.provisionedValue)
-                // refreshApex(this.provisionedValueOne)
-                // setTimeout(() => {
-                //     window.location.reload();
-                //     // this.closeHandler()
-                // }, 1000)
-                return refreshApex(this._wiredRelatedData)
+                return this.refreshCard();
             })
             .then((e) => {
                 console.log('refreshed in addosundhandler')
@@ -176,7 +139,6 @@ export default class Soundboard extends LightningElement {
                         audio: item.Audio_Src__c
                     }
                 });
-                // console.log('returned sounds ' + JSON.stringify(returnedSounds))
             }
         } catch (error) {
             console.log(error);
