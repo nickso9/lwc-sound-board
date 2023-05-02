@@ -2,7 +2,30 @@
     <c-modal>
         <h1 slot="title">Create Sound</h1>
         <div class="slds-m-top_small">
-            Add here
+           
+        </div>
+        <div class="slds-form-element">
+            <div class="image-preview slds-align_absolute-center">
+                <img />
+            </div>
+            <span class="slds-form-element__label slds-align_absolute-center" id="file-selector-primary-label-173">Sound Image</span>
+            <div class="slds-form-element__control slds-align_absolute-center slds-size_1-of-3">
+                <div class="slds-file-selector slds-file-selector_images">
+                    <div class="slds-file-selector__dropzone">
+                        <input type="file" class="slds-file-selector__input slds-assistive-text" accept="image/png"
+                            id="file-upload-input-175"
+                            aria-labelledby="file-selector-primary-label-173 file-selector-secondary-label174" />
+                        <label class="slds-file-selector__body" for="file-upload-input-175"
+                            id="file-selector-secondary-label174">
+                            <span class="slds-file-selector__button slds-button slds-button_neutral">
+                                <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#upload"></use>
+                                </svg>Upload Image</span>
+                            <span class="slds-file-selector__text slds-medium-show">or Drop Image</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </c-modal>
 </template>
