@@ -31,8 +31,8 @@
                 <lightning-input type="text" label="Enter some text" placeholder="type here..." required>
                 </lightning-input>
             </div>
-            <lightning-file-upload label="Sound File" name="fileUploader" accept={acceptedFormats}
-                onuploadfinished={handleUploadFinished}>
+            <lightning-file-upload record-id={audioLibrary} label="Sound File" name="fileUploader"
+                accept={acceptedFormats} onuploadfinished={handleUploadFinished}>
             </lightning-file-upload>
             <p>{documentId}</p>
         </div>

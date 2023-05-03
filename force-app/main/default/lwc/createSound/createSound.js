@@ -3,6 +3,11 @@ import { LightningElement, api } from 'lwc';
 export default class CreateSound extends LightningElement {
 
     @api documentId;
+    audioLibrary = '058Do000000kF82IAE';
+
+    get audioLibrary() {
+        return this.audioLibrary
+    }
 
     get acceptedFormats() {
         return ['.mp3'];
