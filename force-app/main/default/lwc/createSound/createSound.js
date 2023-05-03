@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class CreateSound extends LightningElement {
 
@@ -40,11 +40,6 @@ export default class CreateSound extends LightningElement {
         // console.log(files[0].documentId)
         // console.log('uploaded files123');
     }
-
-    // test(data) {
-    //     // console.log('test : ' + data);
-    //     // this.documentId = data;
-    // }
 
     handleSoundCancel() {
 
