@@ -2,13 +2,14 @@
     <c-modal>
         <h1 slot="title">Create Sound</h1>
         <div class="slds-m-top_small">
-           
+
         </div>
         <div class="slds-form-element">
             <div class="image-preview slds-align_absolute-center">
                 <img />
             </div>
-            <span class="slds-form-element__label slds-align_absolute-center" id="file-selector-primary-label-173">Sound Image</span>
+            <span class="slds-form-element__label slds-align_absolute-center" id="file-selector-primary-label-173">Sound
+                Image</span>
             <div class="slds-form-element__control slds-align_absolute-center slds-size_1-of-3">
                 <div class="slds-file-selector slds-file-selector_images">
                     <div class="slds-file-selector__dropzone">
@@ -26,6 +27,14 @@
                     </div>
                 </div>
             </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Enter some text" placeholder="type here..." required>
+                </lightning-input>
+            </div>
+            <lightning-file-upload label="Sound File" name="fileUploader" accept={acceptedFormats}
+                onuploadfinished={handleUploadFinished}>
+            </lightning-file-upload>
+            <p>{documentId}</p>
         </div>
     </c-modal>
 </template>
