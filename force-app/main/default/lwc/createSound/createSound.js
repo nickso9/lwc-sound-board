@@ -55,17 +55,11 @@ export default class CreateSound extends LightningElement {
     async createSoundHandler(e) {
 
         const soundObj = {
-            audioDocumentId: '069Do000004BrpbIAC',
-            imageDocumentId: '069Do000004BrpcIAC',
-            soundboardId: 'heyhey',
-            name: 'helloworld'
-        }
-        // const soundObj = {
-        //     // audioDocumentId: this.audioDocumentId,
-        //     // imageDocumentId: this.imageDocumentId,
-        //     // soundboardId: this.soundboardId,
-        //     // name: this.name
-        // };
+            audioDocumentId: this.audioDocumentId,
+            imageDocumentId: this.imageDocumentId,
+            soundboardId: this.soundboardId,
+            name: this.name
+        };
         // console.log(soundObj);
         try {
             // const result = await createSound({name, audioDocumentId, imageDocumentId, soundboardId});

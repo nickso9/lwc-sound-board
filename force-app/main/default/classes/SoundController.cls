@@ -6,7 +6,7 @@ public with sharing class SoundController {
     @AuraEnabled(cacheable=true)
     public static List<Sound__c> getSoundList(String searchKey) {
         String searchString = '%' + searchKey + '%';
-        return [SELECT Id, Name, Audio_Src__c, Audio_IMG__c from Sound__c  Where Name Like :searchString Limit 5];
+        return [SELECT Id, Name, Audio_Src__c, Audio_IMG__c, Audio_URL__c from Sound__c  Where Name Like :searchString Limit 5];
     }
     
     @AuraEnabled
@@ -42,8 +42,8 @@ public with sharing class SoundController {
         ContentDistribution newContent = new ContentDistribution(Name = Title, ContentVersionId = id,
         PreferencesAllowViewInBrowser = true);
         insert newContent;
-        ContentDistribution publicUrl = [Select DistributionPublicUrl from ContentDistribution Where id = :newContent.Id];
-        return publicUrl.DistributionPublicUrl;
+        ContentDistribution publicUrl = [Select ContentDownloadUrl from ContentDistribution Where id = :newContent.Id];
+        return publicUrl.ContentDownloadUrl;
     }
 }
 

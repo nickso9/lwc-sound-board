@@ -136,11 +136,11 @@ export default class Soundboard extends LightningElement {
                         name: item.Name,
                         id: item.Id,
                         img: item.Audio_IMG__c,
-                        // audio: item.Audio_Src__c
-                        audio: 'https://ddo000001c7kima0-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/068Do000004NdGc'
+                        audio: item.Audio_URL__c
                     }
                 });
             }
+            console.log(returnedSounds);
         } catch (error) {
             console.log(error);
         }
