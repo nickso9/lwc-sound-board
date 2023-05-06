@@ -35,7 +35,7 @@
             <c-search searched-sounds={searchedSounds} onclose={closeHandler} onaddsound={addSoundHandler}></c-search>
         </template>
         <template if:true={isAddSound}>
-            <c-create-sound onclose={closeHandler}></c-create-sound>
+            <c-create-sound soundboard-id={soundboardId} onclose={closeHandler}></c-create-sound>
         </template>
         <div class="slds-p-around_medium soundboard-container">
             <c-soundcard sounds={sounds} onrefreshcard={refreshCard}></c-soundcard>

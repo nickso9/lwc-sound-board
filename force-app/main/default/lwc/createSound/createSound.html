@@ -12,7 +12,7 @@
                 accept={acceptedImageFormats} onuploadfinished={handleUploadFinished}>
             </lightning-file-upload>
             <div class="slds-p-around_medium lgc-bg">
-                <lightning-input type="text" label="Enter some text" placeholder="type here..." required>
+                <lightning-input onchange={nameHandler} type="text" value={soundName} label="Enter some text" placeholder="type here..." required>
                 </lightning-input>
             </div>
             <lightning-file-upload record-id={audioLibrary} label="Sound File" name="fileUploader"
@@ -20,6 +20,8 @@
             </lightning-file-upload>
             <p>audio : {audioDocumentId}</p>
             <p>image : {imageDocumentId}</p>
+            <lightning-button variant="brand" label="Create Sound" title="Begins the task" onclick={createSoundHandler}>
+            </lightning-button>
         </div>
     </c-modal>
 </template>
