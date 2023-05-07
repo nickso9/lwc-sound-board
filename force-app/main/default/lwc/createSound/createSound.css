@@ -1,5 +1,18 @@
 .image-preview {
-    width: 75px;
-    height: 75px;
+    height: 10.938rem;
+    width: 10.938rem;
     border: 1px solid black;
+    border-radius: 0.313rem;
 }
+
+.success {
+    background-color: #00ff00 !important;
+}
+
+/* .button-disabled {
+    border: 1px solid black;
+    background-color: grey;
+    color: white;
+    padding: 15px;
+    cursor: not-allowed;
+} */

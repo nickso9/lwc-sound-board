@@ -1,26 +1,24 @@
 <template>
-    <!-- <div class="slds-card__header slds-grid">
-        <div><img src={sound.img} /></div>
-    </div>
-    <div class="slds-card__body slds-card__body_inner">{sound.name}</div> -->
-
     <lightning-card variant="Narrow">
-        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
-            <div>
-                <img src={sound.img} />
-                <strong class="slds-p-left_large">{sound.name}</strong>
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-border_top">
+            <div class="slds-grid slds-grid_vertical-align-center slds-p-around_medium">
+                <div class="search-card-image">
+                    <img src={sound.img} />
+                </div>
+                <div class="search-card-content">
+                    <p><strong class="slds-p-left_small">Sound Name: {sound.name}</strong></p>
+                    <p><strong class="slds-p-left_small">Uploaded By: {sound.createdBy}</strong></p>
+                </div>
             </div>
             <div id={sound.id}>
                 <audio src={sound.audio} type="audio/mp3"></audio>
-                <lightning-button-icon onclick={addSound} class="slds-p-right_x-small" icon-name="utility:add" size="large" alternative-text="Add Sound"
-                    slot="actions">
+                <lightning-button-icon onclick={addSound} class="slds-p-right_x-small" icon-name="utility:add"
+                    size="large" alternative-text="Add Sound" slot="actions">
                 </lightning-button-icon>
-                <lightning-button-icon onclick={playHandler} icon-name="utility:play" size="large" alternative-text="Play"
-                    slot="actions">
+                <lightning-button-icon onclick={playHandler} icon-name="utility:play" size="large"
+                    alternative-text="Play" slot="actions">
                 </lightning-button-icon>
             </div>
         </div>
-        <!-- <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p> -->
-        <!-- <p slot="footer">Card Footer</p> -->
     </lightning-card>
 </template>

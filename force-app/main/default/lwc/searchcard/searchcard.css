@@ -1,0 +1,13 @@
+.search-card-image {
+    height: 6.25rem;
+    width: 6.25rem;
+}
+
+.search-card-image img {
+    height: 100%;
+    width: 100%;
+}
+
+.search-card-content strong {
+    display: block;
+}

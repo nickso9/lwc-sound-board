@@ -17,6 +17,7 @@
             <div class="slds-modal__footer">
                 <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
                     onclick={closeModal}>Close</button>
+                <slot name="submit"></slot>
             </div>
         </div>
     </section>

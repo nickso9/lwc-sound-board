@@ -1,27 +1,85 @@
 <template>
     <c-modal>
-        <h1 slot="title">Create Sound</h1>
-        <div class="slds-m-top_small">
+        <h1 slot="title" class="slds-text-align_left slds-p-around_medium">Create Sound</h1>
+        <!-- <div class="slds-m-top_small">
+
+        </div> -->
+        <div class="slds-form-element">
+            <div class="slds-align_absolute-center slds-grid slds-grid_vertical">
+                <div class="image-preview slds-align_absolute-center">
+                    <img src={placeholderImg} />
+                </div>
+            </div>
+            <div class="slds-p-around_medium slds-grid">
+                <div class="slds-grid slds-align_absolute-center">
+                    <div class="slds-form-element slds-grid slds-align_absolute-center">
+                        <div class="slds-form-element__control">
+                            <div class="slds-checkbox">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <input class="sound-image-checkbox" disabled type="checkbox" name="options"
+                                    id="checkbox-unique-id-82" value="checkbox-unique-id-83" />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-82">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">Image</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_small">
+                    <lightning-file-upload class="slds-form_line" record-id={imageLibrary} name="fileUploader"
+                        accept={acceptedImageFormats} onuploadfinished={handleUploadFinished}>
+                    </lightning-file-upload>
+                </div>
+            </div>
+            <div class="slds-p-around_medium slds-grid">
+                <div class="slds-grid slds-align_absolute-center">
+                    <!-- <p>Sound name:</p> -->
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <div class="slds-checkbox">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <input class="sound-name-checkbox" disabled type="checkbox" name="options"
+                                    id="checkbox-unique-id-83" value="checkbox-unique-id-83" />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-83">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">Sound name:</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_small">
+                    <input class="slds-input" onkeyup={nameHandler} type="text" value={soundName} />
+                </div>
+            </div>
+            <div class="slds-p-around_medium slds-grid">
+                <div class="slds-grid slds-align_absolute-center">
+                    <!-- <p>Sound file:</p> -->
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <div class="slds-checkbox">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <input class="sound-file-checkbox" disabled type="checkbox" name="options" id="checkbox-unique-id-84"
+                                    value="checkbox-unique-id-83" />
+                                <label class="slds-checkbox__label" for="checkbox-unique-id-84">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">Sound file:</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-m-left_small">
+                    <lightning-file-upload class="slds-form_line" record-id={audioLibrary} name="fileUploader"
+                        accept={acceptedAudioFormats} onuploadfinished={handleUploadFinished}>
+                    </lightning-file-upload>
+                </div>
+            </div>
 
         </div>
-        <div class="slds-form-element">
-            <div class="image-preview slds-align_absolute-center">
-                <img />
-            </div>
-            <lightning-file-upload record-id={imageLibrary} label="Image File" name="fileUploader"
-                accept={acceptedImageFormats} onuploadfinished={handleUploadFinished}>
-            </lightning-file-upload>
-            <div class="slds-p-around_medium lgc-bg">
-                <lightning-input onchange={nameHandler} type="text" value={soundName} label="Enter some text" placeholder="type here..." required>
-                </lightning-input>
-            </div>
-            <lightning-file-upload record-id={audioLibrary} label="Sound File" name="fileUploader"
-                accept={acceptedAudioFormats} onuploadfinished={handleUploadFinished}>
-            </lightning-file-upload>
-            <p>audio : {audioDocumentId}</p>
-            <p>image : {imageDocumentId}</p>
-            <lightning-button variant="brand" label="Create Sound" title="Begins the task" onclick={createSoundHandler}>
-            </lightning-button>
-        </div>
+        <lightning-button class="create-sound-button" disabled="true" slot="submit" variant="brand" label="Create Sound" title="Begins the task"
+            onclick={createSoundHandler}>
+        </lightning-button>
     </c-modal>
 </template>

@@ -136,7 +136,8 @@ export default class Soundboard extends LightningElement {
                         name: item.Name,
                         id: item.Id,
                         img: item.Audio_IMG__c,
-                        audio: item.Audio_URL__c
+                        audio: item.Audio_URL__c,
+                        createdBy: item.CreatedBy.Name
                     }
                 });
             }
