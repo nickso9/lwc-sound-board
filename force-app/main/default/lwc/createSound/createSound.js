@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import createSound from "@salesforce/apex/SoundController.createSound";
+import removeContentDocument from "@salesforce/apex/SoundController.removeContentDocument";
 import PLACEHOLDER_IMAGE from "@salesforce/resourceUrl/imagePlaceholder";
 
 export default class CreateSound extends LightningElement {
@@ -11,7 +12,6 @@ export default class CreateSound extends LightningElement {
     soundName = ""
     @api soundboardId
 
-
     get acceptedAudioFormats() {
         return ['.mp3'];
     }
@@ -20,24 +20,41 @@ export default class CreateSound extends LightningElement {
         return ['.png', '.jpg', '.gif', '.jpeg'];
     }
 
-    handleUploadFinished(event) {
+    async handleUploadFinished(event) {
         const files = event.detail.files;
         if (files[0].mimeType.includes('image')) {
-            console.log('image was uploaded')
-            this.imageDocumentId = files[0].documentId
-            const imageCheckBox = this.template.querySelector(".sound-image-checkbox");
-            this.checkAndDisableHandler(imageCheckBox, "add");
-        } else if (files[0].mimeType.includes('audio')) {
-            console.log('audio was uploaded')
-            this.audioDocumentId = files[0].documentId;
-            const audioCheckBox = this.template.querySelector(".sound-file-checkbox");
-            this.checkAndDisableHandler(audioCheckBox, "add");
-        }
-        // console.log(JSON.parse(JSON.stringify(event.detail.files)))
-        console.log('uploaded files');
+            console.log('image was uploaded');
+            try {
 
-        // console.log(files[0].documentId)
-        // console.log('uploaded files123');
+                if (this.imageDocumentId) {
+                    console.log(this.imageDocumentId)
+                    const responseImgDel = await removeContentDocument({ docIds: [this.imageDocumentId] });
+                    console.log(`Delete image was a ${responseImgDel}`);
+                }
+                this.imageDocumentId = files[0].documentId
+                const imageCheckBox = this.template.querySelector(".sound-image-checkbox");
+                this.checkAndDisableHandler(imageCheckBox, "add");
+                console.log(this.imageDocumentId)
+            } catch (error) {
+                console.log(`ERROR: ${JSON.stringify(error)}`);
+            }
+        } else if (files[0].mimeType.includes('audio')) {
+            try {
+
+                if (this.audioDocumentId) {
+                    console.log(this.audioDocumentId)
+                    const responseAudioDel = await removeContentDocument({ docIds: [this.audioDocumentId] });
+                    console.log(`Delete image was a ${responseAudioDel}`);
+                }
+                console.log('audio was uploaded')
+                this.audioDocumentId = files[0].documentId;
+                const audioCheckBox = this.template.querySelector(".sound-file-checkbox");
+                this.checkAndDisableHandler(audioCheckBox, "add");
+                console.log(this.audioDocumentId)
+            } catch (error) {
+                console.log(`ERROR: ${JSON.stringify(error)}`);
+            }
+        }
     }
 
     nameHandler(event) {
@@ -69,8 +86,20 @@ export default class CreateSound extends LightningElement {
         }
     }
 
-    handleSoundCancel() {
-        // apex to delete document ids
+    async closeHandler() {
+        const arrayToDelete = [];
+        console.log(this.audioDocumentId, this.imageDocumentId)
+        if (this.audioDocumentId || this.imageDocumentId) {
+            if (this.audioDocumentId) arrayToDelete.push(this.audioDocumentId);
+            if (this.imageDocumentId) arrayToDelete.push(this.imageDocumentId);
+            console.log(arrayToDelete);
+            try {
+                const responseAudioDel = await removeContentDocument({ docIds: arrayToDelete });
+                console.log(`Delete image was a ${responseAudioDel}`);
+            } catch (error) {
+                console.log(`ERROR: ${JSON.stringify(error)}`);
+            }
+        }
     }
 
     async createSoundHandler(e) {

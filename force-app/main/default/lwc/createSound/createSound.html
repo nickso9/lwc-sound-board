@@ -1,9 +1,6 @@
 <template>
-    <c-modal>
+    <c-modal onclose={closeHandler}>
         <h1 slot="title" class="slds-text-align_left slds-p-around_medium">Create Sound</h1>
-        <!-- <div class="slds-m-top_small">
-
-        </div> -->
         <div class="slds-form-element">
             <div class="slds-align_absolute-center slds-grid slds-grid_vertical">
                 <div class="image-preview slds-align_absolute-center">
@@ -34,7 +31,6 @@
             </div>
             <div class="slds-p-around_medium slds-grid">
                 <div class="slds-grid slds-align_absolute-center">
-                    <!-- <p>Sound name:</p> -->
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
                             <div class="slds-checkbox">
@@ -55,7 +51,6 @@
             </div>
             <div class="slds-p-around_medium slds-grid">
                 <div class="slds-grid slds-align_absolute-center">
-                    <!-- <p>Sound file:</p> -->
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
                             <div class="slds-checkbox">
@@ -78,7 +73,7 @@
             </div>
 
         </div>
-        <lightning-button class="create-sound-button" disabled="true" slot="submit" variant="brand" label="Create Sound" title="Begins the task"
+        <lightning-button class="create-sound-button slds-p-left_x-small" disabled="true" slot="submit" variant="brand" label="Create Sound" title="Begins the task"
             onclick={createSoundHandler}>
         </lightning-button>
     </c-modal>

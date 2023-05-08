@@ -45,5 +45,17 @@ public with sharing class SoundController {
         ContentDistribution publicUrl = [Select ContentDownloadUrl from ContentDistribution Where id = :newContent.Id];
         return publicUrl.ContentDownloadUrl;
     }
+
+    @AuraEnabled
+    public static String removeContentDocument(List<Id> docIds){
+        try{
+            List<ContentDocument> contDocs = [SELECT Id FROM ContentDocument WHERE Id in :docIds];
+            delete contDocs;
+            return 'SUCCESS';
+        }
+        catch(Exception ex){
+            throw new AuraHandledException(ex.getMessage());
+        }
+    }
 }
 
