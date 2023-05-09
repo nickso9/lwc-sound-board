@@ -6,7 +6,6 @@
                 <p class="slds-m-left_small" onclick={handleAddSound}><a href="#"><strong>Add Sound</strong></a></p>
             </lightning-layout-item>
             <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
-                <!-- <lightning-input type="search" onchange={handleInputChange}></lightning-input> -->
                 <div class="slds-form-element">
                     <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
                         <lightning-icon size="x-small"
@@ -18,24 +17,11 @@
                 <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
             </lightning-layout-item>
         </lightning-layout>
-        <!-- <div class="slds-p-around_medium actions-container slds-grid slds-gutters slds-align-top">
-            <div>
-
-            </div>
-            <div class="slds-col slds-size_1-of-3">
-                <div class="slds-col slds-size_1-of-3">
-                    <lightning-input type="search" onchange={handleInputChange}></lightning-input>
-                </div>
-                <div class="slds-col slds-size_1-of-3 slds-align-bottom">
-                    <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
-                </div>
-            </div>  
-        </div> -->
         <template if:true={isMadeSearch}>
             <c-search searched-sounds={searchedSounds} onclose={closeHandler} onaddsound={addSoundHandler}></c-search>
         </template>
         <template if:true={isAddSound}>
-            <c-create-sound soundboard-id={soundboardId} onclose={closeHandler}></c-create-sound>
+            <c-create-sound soundboard-id={soundboardId} onclose={closeHandler} onrefreshcard={refreshCard}></c-create-sound>
         </template>
         <div class="slds-p-around_medium soundboard-container">
             <c-soundcard sounds={sounds} onrefreshcard={refreshCard}></c-soundcard>

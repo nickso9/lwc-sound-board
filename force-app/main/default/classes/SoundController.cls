@@ -1,6 +1,3 @@
-
-
-
 public with sharing class SoundController {
     
     @AuraEnabled(cacheable=true)

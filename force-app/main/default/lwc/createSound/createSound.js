@@ -9,7 +9,8 @@ export default class CreateSound extends LightningElement {
     imageDocumentId;
     audioLibrary = '058Do000000kF82IAE';
     imageLibrary = '058Do000000kFGCIA2';
-    soundName = ""
+    soundName = "";
+    wasSoundCreated = false;
     @api soundboardId
 
     get acceptedAudioFormats() {
@@ -87,18 +88,24 @@ export default class CreateSound extends LightningElement {
     }
 
     async closeHandler() {
-        const arrayToDelete = [];
-        console.log(this.audioDocumentId, this.imageDocumentId)
-        if (this.audioDocumentId || this.imageDocumentId) {
-            if (this.audioDocumentId) arrayToDelete.push(this.audioDocumentId);
-            if (this.imageDocumentId) arrayToDelete.push(this.imageDocumentId);
-            console.log(arrayToDelete);
-            try {
-                const responseAudioDel = await removeContentDocument({ docIds: arrayToDelete });
-                console.log(`Delete image was a ${responseAudioDel}`);
-            } catch (error) {
-                console.log(`ERROR: ${JSON.stringify(error)}`);
+        if (!this.wasSoundCreated) {
+            const arrayToDelete = [];
+            console.log(this.audioDocumentId, this.imageDocumentId)
+            if (this.audioDocumentId || this.imageDocumentId) {
+                if (this.audioDocumentId) arrayToDelete.push(this.audioDocumentId);
+                if (this.imageDocumentId) arrayToDelete.push(this.imageDocumentId);
+                console.log(arrayToDelete);
+                try {
+                    const responseAudioDel = await removeContentDocument({ docIds: arrayToDelete });
+                    console.log(`Delete image was a ${responseAudioDel}`);
+                } catch (error) {
+                    console.log(`ERROR: ${JSON.stringify(error)}`);
+                }
             }
+        }
+        if (this.wasSoundCreated) {
+            this.dispatchEvent(new CustomEvent('refreshcard'));
+            this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
         }
     }
 
@@ -113,14 +120,15 @@ export default class CreateSound extends LightningElement {
         // console.log(soundObj);    
         if (soundObj.audioDocumentId && soundObj.imageDocumentId && soundObj.name && soundObj.name) {
             console.log('creating sound')
-            // try {
-            //     // const result = await createSound({name, audioDocumentId, imageDocumentId, soundboardId});
-            //     const result = await createSound({ ...soundObj });
-
-            //     console.log(result)
-            // } catch (error) {
-            //     console.log(error);
-            // }
+            try {
+                // const result = await createSound({name, audioDocumentId, imageDocumentId, soundboardId});
+                const result = await createSound({ ...soundObj });
+                console.log(result)
+                this.wasSoundCreated = true;
+                this.closeHandler();
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 }
