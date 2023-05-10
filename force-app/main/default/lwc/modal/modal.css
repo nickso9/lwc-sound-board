@@ -1,0 +1,16 @@
+.modal-bg-color {
+    background-color: #002c5a;
+}
+
+.slds-modal__container {
+    /* color: white; */
+}
+
+.modal-header-border {
+    border-bottom-color: #e200e4ad;
+}
+
+.modal-footer-border {
+    border-top-color: #e200e4ad;
+    padding: 1.5rem;
+}

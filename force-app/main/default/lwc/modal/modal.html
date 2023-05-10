@@ -6,15 +6,15 @@
                 <lightning-icon onclick={closeModal} icon-name="utility:close" variant="inverse"
                     alternative-text="close" title="Close"></lightning-icon>
             </button>
-            <div class="slds-modal__header">
-                <div id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            <div class="slds-modal__header modal-bg-color modal-header-border">
+                <div id="modal-heading-01" class="slds-modal__title slds-hyphenate slds-text-color_inverse">
                     <slot name="title"></slot>
                 </div>
             </div>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <div class="slds-modal__content slds-p-around_medium modal-bg-color" id="modal-content-id-1">
                 <slot></slot>
             </div>
-            <div class="slds-modal__footer">
+            <div class="slds-modal__footer modal-bg-color modal-footer-border">
                 <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
                     onclick={closeModal}>Close</button>
                 <slot name="submit"></slot>

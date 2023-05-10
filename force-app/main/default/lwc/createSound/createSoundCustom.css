@@ -1,0 +1,7 @@
+.create-sound-custom-import .slds-file-selector__dropzone {
+    border: none;
+}
+
+.create-sound-custom-import .slds-form-element__label {
+    display: none;
+}

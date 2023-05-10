@@ -1,20 +1,20 @@
 <template>
-    <lightning-card title="Soundboard">
-        <lightning-layout class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center soundboard-container">
+    <lightning-card title="Soundboard" class="sound-outer-wrapper">
+        <lightning-layout class="slds-p-around_medium slds-grid slds-grid_align-spread slds-grid_vertical-align-center soundboard-container">
             <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
-                <lightning-icon class="pointer" size="small" icon-name="action:new" alternative-text="new" title="new" onclick={handleAddSound}></lightning-icon>
+                <lightning-icon class="create-icon" size="small" icon-name="action:new" alternative-text="new" title="new" onclick={handleAddSound}></lightning-icon>
                 <p class="slds-m-left_small" onclick={handleAddSound}><a href="#"><strong>Add Sound</strong></a></p>
             </lightning-layout-item>
             <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
                 <div class="slds-form-element">
-                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left slds-m-right_xx-small">
                         <lightning-icon size="x-small"
                             class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
                             icon-name="utility:search"></lightning-icon>
                         <input type="Search" id="search-input" onchange={handleInputChange} class="slds-input" />
                     </div>
                 </div>
-                <lightning-button variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
+                <lightning-button class="lightning-search-btn" variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>
             </lightning-layout-item>
         </lightning-layout>
         <template if:true={isMadeSearch}>

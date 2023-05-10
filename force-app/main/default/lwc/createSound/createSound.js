@@ -2,6 +2,8 @@ import { LightningElement, api } from 'lwc';
 import createSound from "@salesforce/apex/SoundController.createSound";
 import removeContentDocument from "@salesforce/apex/SoundController.removeContentDocument";
 import PLACEHOLDER_IMAGE from "@salesforce/resourceUrl/imagePlaceholder";
+import { loadStyle } from 'lightning/platformResourceLoader';
+import createSoundCustom from '@salesforce/resourceUrl/createSoundCustom';
 
 export default class CreateSound extends LightningElement {
     placeholderImg = PLACEHOLDER_IMAGE;
@@ -12,6 +14,12 @@ export default class CreateSound extends LightningElement {
     soundName = "";
     wasSoundCreated = false;
     @api soundboardId
+
+    renderedCallback() {
+        Promise.all([
+            loadStyle(this, createSoundCustom)
+        ]);        
+    }
 
     get acceptedAudioFormats() {
         return ['.mp3'];

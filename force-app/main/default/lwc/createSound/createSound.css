@@ -1,18 +1,17 @@
 .image-preview {
     height: 10.938rem;
     width: 10.938rem;
-    border: 1px solid black;
-    border-radius: 0.313rem;
 }
 
 .success {
-    background-color: #00ff00 !important;
+    background-color: #ee00ff !important;
 }
 
-/* .button-disabled {
-    border: 1px solid black;
-    background-color: grey;
-    color: white;
-    padding: 15px;
-    cursor: not-allowed;
-} */
+.modal-header-font-size {
+    font-size: 2rem;
+}
+
+.slds-file-selector__dropzone div {
+    border-color: aqua;
+}
+

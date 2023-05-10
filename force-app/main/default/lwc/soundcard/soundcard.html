@@ -3,16 +3,16 @@
         <div class="grid-container">
             <template for:each={sounds} for:item="sound">
                 <!-- <div key={sound.id} class="card" onclick={audioHandler} id={sound.id}> -->
-                    <div key={sound.id} class="card slds-col">
+                    <div key={sound.id} class="card slds-col" style={sound.img}>
                     <div class="card-name slds-p-left_xx-small">
                         <strong>{sound.name}</strong>
                     </div>
 
-                    <div class="card-img">
-                        <img src={sound.img} />
-                    </div>
+                     <div class="card-img">
+                        <!-- <img src={sound.img} /> -->
+                    </div> 
 
-                    <div id={sound.id} class="slds-grid slds-grid slds-grid_align-spread slds-size_1-of-1 slds-p-horizontal_xx-small slds-grid_vertical-align-center">
+                    <div id={sound.id} class="slds-grid slds-grid slds-grid_align-spread slds-size_1-of-1 slds-p-around_xx-small slds-grid_vertical-align-center">
                         <div data-action="delete" onclick={actionHandler}>
                             <lightning-icon class="pointer delete-icon" size="x-small" icon-name="utility:delete"
                                 alternative-text="delete" title="delete" onclick={handleAddSound}></lightning-icon>

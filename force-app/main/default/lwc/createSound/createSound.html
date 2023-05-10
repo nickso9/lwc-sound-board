@@ -1,6 +1,6 @@
 <template>
     <c-modal onclose={closeHandler}>
-        <h1 slot="title" class="slds-text-align_left slds-p-around_medium">Create Sound</h1>
+        <h1 slot="title" class="slds-text-align_left slds-p-around_medium slds-text-color_inverse modal-header-font-size">Create Sound</h1>
         <div class="slds-form-element">
             <div class="slds-align_absolute-center slds-grid slds-grid_vertical">
                 <div class="image-preview slds-align_absolute-center">
@@ -17,14 +17,14 @@
                                     id="checkbox-unique-id-82" value="checkbox-unique-id-83" />
                                 <label class="slds-checkbox__label" for="checkbox-unique-id-82">
                                     <span class="slds-checkbox_faux"></span>
-                                    <span class="slds-form-element__label">Image</span>
+                                    <span class="slds-form-element__label slds-text-color_inverse">Image</span>
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slds-col slds-m-left_small">
-                    <lightning-file-upload class="slds-form_line" record-id={imageLibrary} name="fileUploader"
+                    <lightning-file-upload class="slds-form_line slds-text-color_inverse create-sound-custom-import" record-id={imageLibrary} name="fileUploader"
                         accept={acceptedImageFormats} onuploadfinished={handleUploadFinished}>
                     </lightning-file-upload>
                 </div>
@@ -39,14 +39,14 @@
                                     id="checkbox-unique-id-83" value="checkbox-unique-id-83" />
                                 <label class="slds-checkbox__label" for="checkbox-unique-id-83">
                                     <span class="slds-checkbox_faux"></span>
-                                    <span class="slds-form-element__label">Sound name:</span>
+                                    <span class="slds-form-element__label slds-text-color_inverse">Sound name:</span>
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slds-col slds-m-left_small">
-                    <input class="slds-input" onkeyup={nameHandler} type="text" value={soundName} />
+                    <input class="slds-input slds-text-color_default" onkeyup={nameHandler} type="text" value={soundName} />
                 </div>
             </div>
             <div class="slds-p-around_medium slds-grid">
@@ -59,14 +59,14 @@
                                     value="checkbox-unique-id-83" />
                                 <label class="slds-checkbox__label" for="checkbox-unique-id-84">
                                     <span class="slds-checkbox_faux"></span>
-                                    <span class="slds-form-element__label">Sound file:</span>
+                                    <span class="slds-form-element__label slds-text-color_inverse">Sound file:</span>
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slds-col slds-m-left_small">
-                    <lightning-file-upload class="slds-form_line" record-id={audioLibrary} name="fileUploader"
+                    <lightning-file-upload class="slds-form_line slds-text-color_inverse create-sound-custom-import" record-id={audioLibrary} name="fileUploader"
                         accept={acceptedAudioFormats} onuploadfinished={handleUploadFinished}>
                     </lightning-file-upload>
                 </div>

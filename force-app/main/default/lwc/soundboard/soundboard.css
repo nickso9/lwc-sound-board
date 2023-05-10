@@ -1,6 +1,20 @@
+/* Roboto-Medium */
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('/resource/oswald') format('TrueType');
+}
+
+.sound-outer-wrapper {
+    background-color: #95CAFF;
+    font-family: 'Oswald', 'sans sarif' !important;
+    letter-spacing: .045em;
+}
+
 .soundboard-container, .actions-container {
     max-width: 900px;
     margin: auto;
+    background-color: #1a1a1a;
 }
 
 .search-container {
@@ -15,7 +29,14 @@
     display: none;
 }
 
-.pointer {
+.create-icon {
+    background-color: #e200e4ad;
     cursor: pointer;
+    /* --sds-c-icon-color-foreground-default: #e200e4ad; */
 }
+
+.lightning-search-btn {
+    --sds-c-button-text-color: #1a1a1a !important;
+}
+
 

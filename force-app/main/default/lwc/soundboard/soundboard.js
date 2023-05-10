@@ -70,7 +70,7 @@ export default class Soundboard extends LightningElement {
             // const name = getFieldValue(sound.value, SOUND_NAME);
             // const id = getFieldValue(sounds[i], SOUND_ID)
             const audio = sound.Sound__r.Audio_Src__c;
-            const img = sound.Sound__r.Audio_IMG__c;
+            const img = `background-image: url(${sound.Sound__r.Audio_IMG__c};`;
             const name = sound.Sound__r.Name;
             const id = sound.Id;
             tempSound.push({ id, name, img, audio });
