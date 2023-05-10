@@ -9,3 +9,7 @@
     border-radius: 4px;
     box-shadow: 8px 9px 26px 0 rgba(46,61,73, 0.5);
 }
+
+.modal-header-font-size {
+    font-size: 2rem;
+}
