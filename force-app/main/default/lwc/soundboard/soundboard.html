@@ -3,7 +3,7 @@
         <lightning-layout class="slds-p-around_medium slds-grid slds-grid_align-spread slds-grid_vertical-align-center soundboard-container">
             <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
                 <lightning-icon class="create-icon" size="small" icon-name="action:new" alternative-text="new" title="new" onclick={handleAddSound}></lightning-icon>
-                <p class="slds-m-left_small" onclick={handleAddSound}><a href="#"><strong>Add Sound</strong></a></p>
+                <p class="slds-m-left_small slds-text-heading_medium" onclick={handleAddSound}><a href="#"><strong>Add Sound</strong></a></p>
             </lightning-layout-item>
             <lightning-layout-item class="slds-grid slds-grid_vertical-align-center">
                 <div class="slds-form-element">
@@ -11,7 +11,7 @@
                         <lightning-icon size="x-small"
                             class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
                             icon-name="utility:search"></lightning-icon>
-                        <input type="Search" id="search-input" onchange={handleInputChange} class="slds-input" />
+                        <input type="Search" id="search-input" onchange={handleInputChange} class="slds-input slds-text-heading_medium" />
                     </div>
                 </div>
                 <lightning-button class="lightning-search-btn" variant="Neutral" label="Search" onclick={handleSearch}></lightning-button>

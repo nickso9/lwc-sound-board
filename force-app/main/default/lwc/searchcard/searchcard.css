@@ -6,8 +6,45 @@
 .search-card-image img {
     height: 100%;
     width: 100%;
+    border: 1px solid black;
 }
 
-.search-card-content strong {
+.search-card-content {
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+}
+
+.search-card-actions {
+    height: 6.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.search-card-actions .add-button, .play-button {
+    cursor: pointer;
+    /* display: flex;
+    justify-self: center; */
+}
+
+.search-card-actions .play-button {
+    /* --sds-c-icon-color-background: #e200e4ad; */
+    --sds-c-icon-color-foreground-default: #1a1a1a;
+    border: 1px solid #1a1a1a;
+
+}
+
+.search-card-actions .add-button {
+    /* --sds-c-icon-color-foreground-default: #e200e4ad; */
+    border: 1px solid #1a1a1a;
+    /* #e200e4ad */
+}
+
+/* .search-card-actions .action-buttons {
     display: block;
+} */
+
+.search-card-wrapper {
+    background-color: #f2f2f2;
 }

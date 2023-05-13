@@ -11,8 +11,10 @@
 }
 
 .grid-container .card {
-    height: 125px;
-    width: 125px;
+    /* height: 125px;
+    width: 125px; */
+    height: 150px;
+    width: 150px;
     margin: 0.2rem;
     display: flex;
     flex-direction: column;
