@@ -5,3 +5,13 @@
 .create-sound-custom-import .slds-form-element__label {
     display: none;
 }
+
+.slds-file-selector__button {
+    color: #002c5a;
+    background-color: #FFFFFF;
+}
+
+.slds-file-selector__button:hover {
+    background-color: #e200e4ad;
+    color: #f2f2f2;
+}

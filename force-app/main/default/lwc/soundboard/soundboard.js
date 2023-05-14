@@ -1,6 +1,6 @@
-import { LightningElement, wire, track } from 'lwc';
-import Id from '@salesforce/user/Id'
-import { getRecord, getFieldValue, createRecord } from 'lightning/uiRecordApi';
+import { LightningElement, wire, api } from 'lwc';
+import USER_ID from '@salesforce/user/Id';
+import { getRecord, getFieldValue, createRecord, deleteRecord } from 'lightning/uiRecordApi';
 // import { RefreshEvent } from 'lightning/refresh';
 import { refreshApex } from '@salesforce/apex';
 
@@ -18,10 +18,13 @@ import SOUNDBOARD_ID from "@salesforce/schema/User.Account.Soundboard__r.Id";
 import getSoundList from "@salesforce/apex/SoundController.getSoundList";
 import getBoardAudio from "@salesforce/apex/BoardAudioController.getBoardAudio";
 
+
 const USER_FIELDS = [Name, Alias, AccountId, ACCOUNT, SOUNDBOARD_ID];
 
 
 export default class Soundboard extends LightningElement {
+
+    @api newRecordId;
 
     recordId = '005Do0000023NbZIAU'
     soundboardId;
@@ -33,10 +36,16 @@ export default class Soundboard extends LightningElement {
 
     searchedSounds = [];
 
-    @wire(getRecord, { recordId: '$recordId', fields: USER_FIELDS })
+    get allsounds() {
+        return this.sounds.length ? this.sounds : "";
+    }
+
+    @wire(getRecord, { recordId: USER_ID, fields: USER_FIELDS })
     accountHandler({ data, error }) {
         if (data) {
-            // console.log(data);
+            console.log('----')
+            console.log(USER_ID)
+            console.log(data);
             console.log('wire get record')
             this.soundboardId = getFieldValue(data, SOUNDBOARD_ID)
             // this.soundboardId = data.fields.Account.value.fields.Soundboard__c.value;
@@ -46,14 +55,17 @@ export default class Soundboard extends LightningElement {
     }
 
     _wiredRelatedData;
-    @wire(getBoardAudio, {soundboardId: '$soundboardId'})
+    @wire(getBoardAudio, { soundboardId: '$soundboardId' })
     relatedSoundHandler(relatedSounds) {
+        console.log(relatedSounds);
+        console.log('grabbng sound ' + this.soundboardId)
         this._wiredRelatedData = relatedSounds
         const { data, error } = relatedSounds;
         if (data) {
             this.setSounds(data);
         } else {
-            console.log(error)
+            console.log('error')
+            console.log(JSON.stringify(error))
         }
     }
 
@@ -86,7 +98,9 @@ export default class Soundboard extends LightningElement {
 
     refreshCard() {
         console.log('refresh card')
-        return refreshApex(this._wiredRelatedData)
+        setInterval(() => {
+            refreshApex(this._wiredRelatedData);
+        }, 1000)
     }
 
     closeHandler() {
@@ -113,13 +127,29 @@ export default class Soundboard extends LightningElement {
             })
             .then((e) => {
                 console.log('refreshed in addosundhandler')
-            //     this.closeHandler()
+                //     this.closeHandler()
             })
             .catch((error) => {
                 console.log(error);
             })
     }
 
+    deleteSoundHandler(event) {
+
+        const soundIdToDelete = event.detail.id;
+        console.log('deleting ' + soundIdToDelete)
+        deleteRecord(soundIdToDelete)
+            .then((result) => {
+                return this.refreshCard();
+            })
+            .then((e) => {
+                console.log('refreshed in delelte sound handler')
+                //     this.closeHandler()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
     async handleSearch() {
         this.isMadeSearch = true;

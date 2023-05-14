@@ -30,6 +30,7 @@ export default class CreateSound extends LightningElement {
     }
 
     async handleUploadFinished(event) {
+        console.log('test')
         const files = event.detail.files;
         if (files[0].mimeType.includes('image')) {
             console.log('image was uploaded');

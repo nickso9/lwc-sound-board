@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="slds-col slds-m-left_small">
-                    <input class="slds-input slds-text-color_default" onkeyup={nameHandler} type="text" value={soundName} />
+                    <input class="create-sound-input slds-input slds-text-color_default" onkeyup={nameHandler} type="text" value={soundName} />
                 </div>
             </div>
             <div class="slds-p-around_medium slds-grid">
@@ -73,8 +73,7 @@
             </div>
 
         </div>
-        <lightning-button class="create-sound-button slds-p-left_x-small slds-text-heading_medium" disabled="true" slot="submit" variant="brand" label="Create Sound" title="Begins the task"
-            onclick={createSoundHandler}>
-        </lightning-button>
+        <button disabled class="create-sound-button slds-button slds-text-heading_medium" slot="submit"
+            onclick={createSoundHandler}>Create Sound</button>
     </c-modal>
 </template>

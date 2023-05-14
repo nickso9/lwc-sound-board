@@ -5,16 +5,23 @@
     src: url('/resource/oswald') format('TrueType');
 }
 
+:host {
+    --slds-c-card-color-background: #1a1a1a !important;
+  }
+
 .sound-outer-wrapper {
-    background-color: #95CAFF;
     font-family: 'Oswald', 'sans sarif' !important;
     letter-spacing: .045em;
+}
+
+.sound-outer-wrapper .slds-card {
+    background-color: #1a1a1a !important;
 }
 
 .soundboard-container, .actions-container {
     max-width: 900px;
     margin: auto;
-    background-color: #1a1a1a;
+    background-color: #1a1a1a !important;
 }
 
 .search-container {
@@ -24,21 +31,31 @@
     box-shadow: 8px 9px 26px 0 rgba(46,61,73, 0.5);
 }
 
-.soundboard-container lightning-layout-item lightning-input label {
-    border: 1px solid orange;
-    display: none;
-}
-
 .create-icon {
     background-color: #e200e4ad;
     cursor: pointer;
-    /* --sds-c-icon-color-foreground-default: #e200e4ad; */
+}
+
+.create-icon:hover {
+    outline: 1px solid #f2f2f2;
+}
+
+.create-sound-button a:hover {
+    color: #f2f2f2
 }
 
 .lightning-search-btn {
     --sds-c-button-text-color: #1a1a1a !important;
+    --sds-c-button-neutral-color-background: #f2f2f2 !important;
+    --slds-c-button-neutral-color-background-hover: #e200e4ad;
+    --sds-c-button-text-color-hover: #f2f2f2;
 }
 
+.search-input {
+    border: none;
+}
 
-
+.search-input:focus {
+    outline: 2px solid #e200e4ad;
+}
 

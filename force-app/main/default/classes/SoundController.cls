@@ -1,4 +1,4 @@
-public with sharing class SoundController {
+public without sharing class SoundController {
     
     @AuraEnabled(cacheable=true)
     public static List<Sound__c> getSoundList(String searchKey) {

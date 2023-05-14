@@ -14,3 +14,20 @@
     border-top-color: #e200e4ad;
     padding: 1.5rem;
 }
+
+.close-modal-button {
+    width: 75px;
+    height: 40px;
+    color: #1a1a1a !important;
+    background-color: #f2f2f2 !important;
+}
+
+.close-modal-button:hover {
+    color: #f2f2f2 !important;
+    background-color: #e200e4ad !important;
+}
+
+/* --sds-c-button-text-color: #1a1a1a !important;
+    --sds-c-button-neutral-color-background: #f2f2f2 !important;
+    --slds-c-button-neutral-color-background-hover: #e200e4ad;
+    --sds-c-button-text-color-hover: #f2f2f2; */

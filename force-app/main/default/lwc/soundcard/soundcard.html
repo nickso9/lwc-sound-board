@@ -13,12 +13,12 @@
                     <div id={sound.id} class="slds-grid slds-grid slds-grid_align-spread slds-size_1-of-1 slds-p-around_xx-small slds-grid_vertical-align-center">
                         <div data-action="delete" onclick={actionHandler}>
                             <lightning-icon class="pointer delete-icon" size="x-small" icon-name="utility:delete"
-                                alternative-text="delete" title="delete" onclick={handleAddSound}></lightning-icon>
+                                alternative-text="delete" title="delete"></lightning-icon>
                         </div>
                         <div data-action="play" onclick={actionHandler}>
                             <audio src={sound.audio} type="audio/mp3"></audio>
                             <lightning-icon class="pointer play-icon" size="small" icon-name="utility:play"
-                                alternative-text="play" title="play" onclick={handleAddSound}></lightning-icon>
+                                alternative-text="play" title="play"></lightning-icon>
                         </div>
                     </div>
                 </div>
