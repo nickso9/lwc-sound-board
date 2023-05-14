@@ -48,3 +48,14 @@
 .search-card-wrapper {
     background-color: #f2f2f2;
 }
+
+.search-card-left-content {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 480px) {
+    .search-card-left-content {
+        flex-direction: column;
+    } 
+}
