@@ -5,7 +5,7 @@
 ### Overview
 
 
-#### Community Soundboard is a web application built on the Salesforce Experience Cloud using Lightning Web Components (LWC) and Apex. It allows users to create, share, use sound clips on their own soundboard, and search for and add sounds created by other users. 
+#### Community Soundboard is a web application built on the Salesforce Experience Cloud using Lightning Web Components (LWC) and Apex. It allows users to create, share, use sound clips on their own soundboard, plus search for and add sounds created by other users. 
 
 
 
