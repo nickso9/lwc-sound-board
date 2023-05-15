@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#283138</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Soundboard</label>
+    <navType>Standard</navType>
+    <tabs>Soundbar</tabs>
+    <tabs>Board_Audio__c</tabs>
+    <tabs>Sound__c</tabs>
+    <tabs>Soundboard__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Soundboard_UtilityBar</utilityBar>
+</CustomApplication>
