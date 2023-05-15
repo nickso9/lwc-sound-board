@@ -24,26 +24,28 @@
 
 .search-card-actions .add-button, .play-button {
     cursor: pointer;
-    /* display: flex;
-    justify-self: center; */
 }
 
 .search-card-actions .play-button {
-    /* --sds-c-icon-color-background: #e200e4ad; */
     --sds-c-icon-color-foreground-default: #1a1a1a;
     border: 1px solid #1a1a1a;
 
 }
 
-.search-card-actions .add-button {
-    /* --sds-c-icon-color-foreground-default: #e200e4ad; */
-    border: 1px solid #1a1a1a;
-    /* #e200e4ad */
+.search-card-actions .play-button:hover {
+    --sds-c-icon-color-foreground-default: #002c5a;
+
 }
 
-/* .search-card-actions .action-buttons {
-    display: block;
-} */
+.search-card-actions .add-button {
+    border: 1px solid #1a1a1a;
+}
+
+.search-card-actions .add-button:hover {
+    border: 1px solid #e200e4ad;
+    --sds-c-icon-color-foreground-default: #e200e4ad;
+}
+
 
 .search-card-wrapper {
     background-color: #f2f2f2;
@@ -52,6 +54,7 @@
 .search-card-left-content {
     overflow: hidden;
     white-space: nowrap;
+    color: black;
 }
 
 @media screen and (max-width: 480px) {

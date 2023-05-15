@@ -1,0 +1,13 @@
+.logout-button-wrapper {
+    background-color: #1a1a1a;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.lightning-logout-btn {
+    --sds-c-button-text-color: #1a1a1a !important;
+    --sds-c-button-neutral-color-background: #f2f2f2 !important;
+    --slds-c-button-neutral-color-background-hover: #e200e4ad;
+    --sds-c-button-text-color-hover: #f2f2f2;
+}

@@ -4,6 +4,7 @@ import removeContentDocument from "@salesforce/apex/SoundController.removeConten
 import PLACEHOLDER_IMAGE from "@salesforce/resourceUrl/imagePlaceholder";
 import { loadStyle } from 'lightning/platformResourceLoader';
 import createSoundCustom from '@salesforce/resourceUrl/createSoundCustom';
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 export default class CreateSound extends LightningElement {
     placeholderImg = PLACEHOLDER_IMAGE;
@@ -68,6 +69,7 @@ export default class CreateSound extends LightningElement {
     }
 
     nameHandler(event) {
+        console.log('dfsdfsdf')
         this.soundName = event.target.value;
         const nameCheckBox = this.template.querySelector(".sound-name-checkbox");
         if (this.soundName.length > 3) {
@@ -134,6 +136,12 @@ export default class CreateSound extends LightningElement {
                 const result = await createSound({ ...soundObj });
                 console.log(result)
                 this.wasSoundCreated = true;
+                const evt = new ShowToastEvent({
+                    message: "Success!! Sound added to community!",
+                    variant: "info",
+                    mode: "dismissable" // pester/sticky/dismissable
+                });
+                this.dispatchEvent(evt);
                 this.closeHandler();
             } catch (error) {
                 console.log(error);

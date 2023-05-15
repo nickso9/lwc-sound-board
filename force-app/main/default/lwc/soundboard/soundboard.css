@@ -6,7 +6,9 @@
 }
 
 :host {
-    --slds-c-card-color-background: #1a1a1a !important;
+    /* --slds-c-card-color-background: #1a1a1a !important; */
+    --slds-c-card-color-background: white !important;
+    /* background-color: white !important; */
   }
 
 .sound-outer-wrapper {
@@ -15,7 +17,8 @@
 }
 
 .sound-outer-wrapper .slds-card {
-    background-color: #1a1a1a !important;
+    /* background-color: #1a1a1a !important; */
+    background-color: white !important;
 }
 
 .soundboard-container, .actions-container {
@@ -53,9 +56,9 @@
 
 .search-input {
     border: none;
+    color: black;
 }
 
 .search-input:focus {
     outline: 2px solid #e200e4ad;
 }
-

@@ -3,10 +3,6 @@
     width: 10.938rem;
 }
 
-.success {
-    background-color: #ee00ff !important;
-}
-
 .modal-header-font-size {
     font-size: 2rem;
 }
@@ -43,4 +39,9 @@
 
 .create-sound-input {
     border: none;
+    color: black;
+}
+
+.success {
+    background-color: #ee00ff !important;
 }

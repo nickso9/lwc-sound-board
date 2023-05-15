@@ -43,7 +43,15 @@
     background-color: grey;
 }
 
+.play-icon:hover {
+    --sds-c-icon-color-foreground-default: #002c5a;
+}
+
 .delete-icon {
     --sds-c-icon-color-foreground-default: red;
     cursor: pointer;
+}
+
+.delete-icon:hover {
+    --sds-c-icon-color-foreground-default: rgb(217, 24, 24);
 }

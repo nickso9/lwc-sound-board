@@ -1,8 +1,8 @@
 import { LightningElement, wire, api } from 'lwc';
 import USER_ID from '@salesforce/user/Id';
 import { getRecord, getFieldValue, createRecord, deleteRecord } from 'lightning/uiRecordApi';
-// import { RefreshEvent } from 'lightning/refresh';
 import { refreshApex } from '@salesforce/apex';
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import AccountId from "@salesforce/schema/User.AccountId"
 import Alias from "@salesforce/schema/User.Alias"
@@ -81,7 +81,7 @@ export default class Soundboard extends LightningElement {
             // const img = getFieldValue(sound.value, IMG_URL);
             // const name = getFieldValue(sound.value, SOUND_NAME);
             // const id = getFieldValue(sounds[i], SOUND_ID)
-            const audio = sound.Sound__r.Audio_Src__c;
+            const audio = sound.Sound__r.Audio_URL__c;
             const img = `background-image: url(${sound.Sound__r.Audio_IMG__c};`;
             const name = sound.Sound__r.Name;
             const id = sound.Id;
@@ -120,14 +120,13 @@ export default class Soundboard extends LightningElement {
             apiName: event.detail.apiName,
             fields: { ...event.detail.fields, Soundboard__c: this.soundboardId }
         }
-        // console.log(boardAudio)
         createRecord(boardAudio)
             .then((result) => {
                 return this.refreshCard();
             })
             .then((e) => {
                 console.log('refreshed in addosundhandler')
-                //     this.closeHandler()
+                this.showToast("Audio added to your soundboard","success");
             })
             .catch((error) => {
                 console.log(error);
@@ -135,7 +134,6 @@ export default class Soundboard extends LightningElement {
     }
 
     deleteSoundHandler(event) {
-
         const soundIdToDelete = event.detail.id;
         console.log('deleting ' + soundIdToDelete)
         deleteRecord(soundIdToDelete)
@@ -144,7 +142,7 @@ export default class Soundboard extends LightningElement {
             })
             .then((e) => {
                 console.log('refreshed in delelte sound handler')
-                //     this.closeHandler()
+                this.showToast("Audio removed from your soundboard","error");
             })
             .catch((error) => {
                 console.log(error);
@@ -180,5 +178,14 @@ export default class Soundboard extends LightningElement {
     handleAddSound() {
         this.isAddSound = true;
         this.showModal = true;
+    }
+
+    showToast(message, variant) {
+        const evt = new ShowToastEvent({
+            message: message,
+            variant: variant,
+            mode: "dismissable" // pester/sticky/dismissable
+        });
+        this.dispatchEvent(evt);
     }
 }
