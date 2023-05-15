@@ -28,7 +28,7 @@
 
 ## Technical Specification
 
-#### The interface of the app is built using Lightning Web Components (LWC) and is divided into smaller components for better modularity and maintainability. The main component orchestrates the other components and implements the most important logic of the application. The app also utilizes Apex controllers for different functionalities, including searching for audio clips, retrieving related audio clips for the soundboard, and creating new audio records. This creation process also involves the creation of a content distribution object to make the audio available to the public, and organizing the media into their respective libraries based on their type. These Apex controllers allow for efficient and optimized execution of these functionalities while adhering to Salesforce development best practices.
+#### The interface of the app is built using Lightning Web Components (LWC) and is divided into smaller components for better modularity and maintainability. The main component orchestrates the other components and implements the most important logic of the application. The app also utilizes Apex controllers directing the flow of data from the frontend to the backend, including searching for audio clips, retrieving related audio clips for the soundboard, and creating new audio records (This creation process also involves the creation of a content distribution object to make the audio available to the public, and organizing the media into their respective libraries based on their type). These Apex controllers allow for efficient and optimized execution of these functionalities.
 
 ---
 
