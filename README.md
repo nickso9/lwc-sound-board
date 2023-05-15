@@ -1,18 +1,17 @@
-# Salesforce DX Project: Next Steps
+# Community Soundboard
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
-## How Do You Plan to Deploy Your Changes?
+## Overview
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+### Community Soundboard is a web application built on the Salesforce Experience Cloud using Lightning Web Components (LWC) and Apex. It allows users to create, share, use sound clips on their own soundboard, and search for and add sounds created by other users. 
 
-## Configure Your Salesforce DX Project
+## Features
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+### User authentication and authorization as a community user
+### Sound creation: users can upload an audio file and an image to create a sound clip that can be added to their own soundboard and shared with others
+### Sound lookup: users can search for sounds added by other users to add to their own soundboard
+### Soundboard management: users can view, play, and delete sounds on their own soundboard
 
-## Read All About It
+## Technical Specification
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+### The interface of the app is built using Lightning Web Components (LWC) and is divided into smaller components for better modularity and maintainability. The main component orchestrates the other components and implements the most important logic of the application. The app also utilizes Apex controllers for different functionalities, including searching for audio clips, retrieving related audio clips for the soundboard, and creating new audio records. This creation process also involves the creation of a content distribution object to make the audio available to the public, and organizing the media into their respective libraries based on their type. These Apex controllers allow for efficient and optimized execution of these functionalities while adhering to Salesforce development best practices.
