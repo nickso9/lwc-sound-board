@@ -150,10 +150,11 @@ export default class Soundboard extends LightningElement {
     }
 
     async handleSearch() {
+        this.searchedSounds = [];
         this.isMadeSearch = true;
         this.showModal = true;
         if (!this.searchKey) {
-            return this.searchedSounds = [];
+            return 
         }
         const returnedSounds = await getSoundList({ searchKey: this.searchKey });
         try {
