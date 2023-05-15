@@ -36,3 +36,24 @@
 #### Searching...
 
 ![Searching](assets/Screen%20Shot%202023-05-14%20at%208.19.21%20PM.png)
+
+---
+
+### Contributing
+
+#### None
+
+---
+
+### Questions
+
+#### https://github.com/nickmighty
+
+---
+
+### License 
+
+#### MIT
+
+---
+
