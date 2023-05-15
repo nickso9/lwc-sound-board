@@ -1,11 +1,11 @@
-# Salesforce Soundboard (Experience Cloud)
+# Soundboard (Experience Cloud)
 
 ![mainpage](assets/Screen%20Shot%202023-05-14%20at%208.25.10%20PM.png)
 
 ## Overview
 
 
-#### Community Soundboard is a web application built on the Salesforce Experience Cloud using Lightning Web Components (LWC) and Apex. It allows users to create, share, use sound clips on their own soundboard, plus search for and add sounds created by other users. 
+#### Soundboard is a web application built on the Salesforce Experience Cloud using Lightning Web Components (LWC) and Apex. It allows users to create, share, use sound clips on their own soundboard, plus search for and add sounds created by other users. 
 
 ---
 
