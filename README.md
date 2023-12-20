@@ -56,7 +56,6 @@ Searching:
 
 ### Questions
 
-#### https://github.com/nickmighty
 #### https://ddo000001c7kima0-dev-ed.develop.my.site.com/s/login/
 
 ---
